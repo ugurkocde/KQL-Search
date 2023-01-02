@@ -124,7 +124,7 @@ export default function ChangelogModal() {
                 rel="noreferrer"
               >
                 {" "}
-                Kusto Query Language (KQL) overview
+                Kusto Query Language (KQL)
               </a>{" "}
             </p>
           </Typography>
