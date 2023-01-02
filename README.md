@@ -1,5 +1,7 @@
 # KQL Search
 
+![KQLSearch](https://user-images.githubusercontent.com/43906965/210248362-41ba55ef-de47-46cc-a618-2ce36f488825.png)
+
 This website was made to simplify the process of searching for KQL Queries that are publicly shared on GitHub.
 
 Currently supported GitHub Repositories:
