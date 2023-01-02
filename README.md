@@ -10,7 +10,7 @@ Currently supported GitHub Repositories:
 
 more will be added soon ... 
 
-I wrote a Blog about my motivation and the things I learned. You can find it here: 
+**I wrote a Blog about my motivation and the things I have learned with this project. You can find it here:**
 
 # What is KQL? 
 
