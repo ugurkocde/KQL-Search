@@ -1,7 +1,7 @@
 import React from "react";
 
 function SearchBar({ onSearch, onFilter }) {
-  const [setQuery] = React.useState("");
+  const [query, setQuery] = React.useState("");
   const [filter, setFilter] = React.useState("");
 
   // Update the search query when the input field is changed
