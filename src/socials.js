@@ -24,7 +24,13 @@ export default function Socials() {
           color="primary"
           size="large"
           title="GitHub"
-          onClick={() => window.open("https://github.com/ugurkocde", "_blank")}
+          onClick={() =>
+            window.open(
+              "https://github.com/ugurkocde/KQL-Search",
+              "_blank",
+              "noreferrer"
+            )
+          }
         >
           <FontAwesomeIcon icon={faGithub} />
         </IconButton>
