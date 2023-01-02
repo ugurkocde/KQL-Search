@@ -20,7 +20,6 @@ KQL has a syntax similar to SQL, but is designed specifically for querying and a
 
 Microsoft Documentation: [Kusto Query Language (KQL)](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/) 
 
-
 # How to start this App on your local machine
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
