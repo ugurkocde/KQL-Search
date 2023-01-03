@@ -12,7 +12,7 @@ Currently supported GitHub Repositories:
 
 more will be added soon ... 
 
-**I wrote a Blog about my motivation and the things I have learned with this project. You can find it here:**
+**I wrote a Blog about my motivation and the things I have learned with this project. You can find it here: [Blog](https://ugurkoc.de/kql-search/)**
 
 # What is KQL? 
 
