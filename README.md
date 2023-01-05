@@ -8,8 +8,6 @@ This website was made to simplify the process of searching for KQL Queries that 
 www.kqlsearch.com
 </p>
 
-
-
 Currently supported GitHub Repositories:
 
 1. Matt Zorich: [Sentinel Queries](https://github.com/reprise99/Sentinel-Queries)
