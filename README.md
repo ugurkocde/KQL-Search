@@ -4,7 +4,11 @@
 
 This website was made to simplify the process of searching for KQL Queries that are publicly shared on GitHub.
 
-[www.kqlsearch.com](www.kqlsearch.com)
+<p align="center">
+www.kqlsearch.com
+</p>
+
+
 
 Currently supported GitHub Repositories:
 
