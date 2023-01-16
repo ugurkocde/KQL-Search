@@ -12,6 +12,8 @@ Currently supported GitHub Repositories:
 
 1. Matt Zorich: [Sentinel Queries](https://github.com/reprise99/Sentinel-Queries)
 2. Rod Trent: [SentinelKQL](https://github.com/rod-trent/SentinelKQL)
+3. Jose Sebastián Canós: [Sentinel_KQL](https://github.com/ep3p/Sentinel_KQL/tree/main/Queries)
+4. Bert-Jan Pals: [Hunting-Queries-Detection-Rules](https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules) 
 3. Ugur Koc: [KQL_Intune](https://github.com/ugurkocde/KQL_Intune) 
 
 more will be added soon ... 
