@@ -4,6 +4,10 @@
 
 This website was made to simplify the process of searching for KQL Queries that are publicly shared on GitHub.
 
+<p align="center">
+www.kqlsearch.com
+</p>
+
 Currently supported GitHub Repositories:
 
 1. Matt Zorich: [Sentinel Queries](https://github.com/reprise99/Sentinel-Queries)
@@ -25,10 +29,6 @@ Microsoft Documentation: [Kusto Query Language (KQL)](https://learn.microsoft.co
 # How to start this App on your local machine
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
