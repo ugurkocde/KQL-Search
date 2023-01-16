@@ -46,10 +46,19 @@ export default function ChangelogModal() {
               {" "}
               <b>Version 1.0:</b> Initial Release{" "}
             </p>
+              <br></br>
             <p>
               {" "}
-              <b>Version 1.1:</b> Added new repo:
-              https://github.com/rod-trent/SentinelKQL
+              <b>Version 1.1:</b> Added one new repo:
+              <li>https://github.com/rod-trent/SentinelKQL </li>
+              
+            </p>
+              <br></br>
+            <p>
+              {" "}
+              <b>Version 1.2:</b> Added two new repos:
+              <li>https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules</li> 
+              <li>https://github.com/ep3p/Sentinel_KQL/tree/main/Queries</li>
             </p>
           </Typography>
         </Box>

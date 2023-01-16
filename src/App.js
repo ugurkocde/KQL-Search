@@ -11,7 +11,6 @@ import "./App.css";
 function App() {
   const [intuneFiles, setIntuneFiles] = useState([]);
   const [sentinelFiles, setSentinelFiles] = useState([]);
-  const [otherFiles, setOtherFiles] = useState([]);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All"); // Added filter state variable
   const searchRegex = new RegExp(query, "i");
@@ -25,26 +24,15 @@ function App() {
       (file.type === "file" && searchRegex.test(file.name)) ||
       (file.type === "dir" && searchRegex.test(file.name))
   );
-  let filteredOtherFiles = otherFiles.filter(
-    (file) =>
-      (file.type === "file" && searchRegex.test(file.name)) ||
-      (file.type === "dir" && searchRegex.test(file.name))
-  );
 
   // Filter the list of files based on the search query and the selected prefix
   if (filter === "Intune") {
     filteredIntuneFiles = intuneFiles;
     filteredSentinelFiles = [];
-    filteredOtherFiles = [];
   } else if (filter === "Sentinel") {
     filteredIntuneFiles = [];
     filteredSentinelFiles = sentinelFiles;
-    filteredOtherFiles = [];
-  } else if (filter === "Other") {
-    filteredIntuneFiles = [];
-    filteredSentinelFiles = [];
-    filteredOtherFiles = otherFiles;
-  }
+  } 
 
   useEffect(() => {
     const fetchRepositoryFiles = async (repository, path = "") => {
@@ -59,17 +47,26 @@ function App() {
           }
         );
 
+           // Add the repository information to each file object
+          const filesWithRepository = response.data.map((file) => {
+            return {...file, repository: repository};
+        });
+
         // Add the retrieved files to the list of repository files
         if (repository === "ugurkocde/KQL_Intune") {
-          setIntuneFiles((intuneFiles) => [...intuneFiles, ...response.data]);
-        } else if (repository === "reprise99/Sentinel-Queries") {
+          setIntuneFiles((intuneFiles) => [...intuneFiles, ...response.data, ...filesWithRepository]);
+        } else if (
+          repository === "reprise99/Sentinel-Queries" || // https://github.com/reprise99/Sentinel-Queries
+          (repository === "ep3p/Sentinel_KQL" && path.startsWith("Queries")) || // https://github.com/ep3p/Sentinel_KQL/tree/main/Queries
+          (repository === "rod-trent/SentinelKQL") || // https://github.com/rod-trent/SentinelKQL
+          (repository === "Bert-JanP/Hunting-Queries-Detection-Rules") // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+        ) {
           setSentinelFiles((sentinelFiles) => [
             ...sentinelFiles,
             ...response.data,
+            ...filesWithRepository
           ]);
-        } else if (repository === "rod-trent/SentinelKQL") {
-          setOtherFiles((otherFiles) => [...otherFiles, ...response.data]);
-        }
+        } 
 
         // Recursively fetch the contents of any subdirectories
         for (const file of response.data) {
@@ -82,10 +79,12 @@ function App() {
       }
     };
 
-    // Fetch files from all three repositories
+    // Fetch files from all repositories
     fetchRepositoryFiles("ugurkocde/KQL_Intune");
     fetchRepositoryFiles("reprise99/Sentinel-Queries");
+    fetchRepositoryFiles("ep3p/Sentinel_KQL");
     fetchRepositoryFiles("rod-trent/SentinelKQL");
+    fetchRepositoryFiles("Bert-JanP/Hunting-Queries-Detection-Rules");
 
     // Reset the search query after the initial fetch
     setQuery("");
@@ -98,7 +97,7 @@ function App() {
   const handleFilter = (prefix) => {
     setFilter(prefix);
   };
-
+  
   const today = new Date();
   const options = { year: "numeric", month: "long", day: "numeric" };
   const lastRefresh = today.toLocaleDateString("en-US", options);
@@ -120,7 +119,6 @@ function App() {
         <Statistics
           intuneFiles={intuneFiles}
           sentinelFiles={sentinelFiles}
-          otherFiles={otherFiles}
         />
       </div>
       <div
@@ -133,20 +131,14 @@ function App() {
         }}
       >
         <FileList
-          files={filteredSentinelFiles}
-          prefix="Sentinel"
-          filter={filter}
-          query={query}
-        />
-        <FileList
           files={filteredIntuneFiles}
           prefix="Intune"
           filter={filter}
           query={query}
         />
         <FileList
-          files={filteredOtherFiles}
-          prefix="Other"
+          files={filteredSentinelFiles}
+          prefix="Sentinel"
           filter={filter}
           query={query}
         />

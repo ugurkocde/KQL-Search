@@ -1,17 +1,59 @@
 import React from "react";
 
-function Statistics({ intuneFiles, sentinelFiles, otherFiles }) {
+function Statistics({ intuneFiles, sentinelFiles }) {
   // Calculate the total count of .kql files in the Sentinel and Intune repositories
-  const intuneCount = intuneFiles.filter(
-    (file) => file.type === "file" && file.name.endsWith(".kql")
+  const reprise99FilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "reprise99/Sentinel-Queries" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
   ).length;
-  const sentinelCount = sentinelFiles.filter(
-    (file) => file.type === "file"
+  const ep3pFilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "ep3p/Sentinel_KQL" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
   ).length;
-  const otherCount = otherFiles.filter(
-    (file) => file.type === "file" && file.name.endsWith(".txt")
+  const rodtrentFilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "rod-trent/SentinelKQL" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
   ).length;
-  const totalCount = intuneCount + sentinelCount + otherCount;
+  const BertJanPFilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "Bert-JanP/Hunting-Queries-Detection-Rules" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
+  ).length;
+  const ugurkocdeFilesCount = intuneFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "ugurkocde/KQL_Intune" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
+  ).length;
+
+  const totalCount =
+    reprise99FilesCount +
+    ep3pFilesCount +
+    rodtrentFilesCount +
+    BertJanPFilesCount +
+    ugurkocdeFilesCount;
 
   return (
     <div
@@ -30,8 +72,17 @@ function Statistics({ intuneFiles, sentinelFiles, otherFiles }) {
           fontSize: "x-Large",
         }}
       >
-        <p style={{ margin: "1rem", color: "#F4E04D", textAlign: "center" }}>
-          Total Number of KQL Queries found: {totalCount}
+        <p
+          style={{
+            margin: "1rem",
+            color: "#F4E04D",
+            textAlign: "center",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p> Total Number of KQL Queries found: {totalCount}</p>
         </p>
       </div>
     </div>

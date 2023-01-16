@@ -71,7 +71,6 @@ function SearchBar({ onSearch, onFilter }) {
           <option value="All">All</option>
           <option value="Sentinel">Security</option>
           <option value="Intune">Intune</option>
-          <option value="Other">Other</option>
         </select>
       </div>
     </div>

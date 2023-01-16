@@ -33,7 +33,8 @@ function FileList({ files, query, prefix, filter }) {
     filtered = files.filter(
       (file) =>
         file.name.toLowerCase().includes(query.toLowerCase()) &&
-        (file.name.endsWith(".kql") || file.name.endsWith(".txt"))
+        (file.name.endsWith(".kql") || file.name.endsWith(".txt") || file.name.endsWith(".md")) &&
+        file.name.toLowerCase() !== "readme.md"
     );
   }
 
@@ -41,18 +42,12 @@ function FileList({ files, query, prefix, filter }) {
     filtered = files.filter(
       (file) =>
         file.name.toLowerCase().includes(query.toLowerCase()) &&
-        (file.name.endsWith(".kql") || file.name.endsWith(".txt"))
+        (file.name.endsWith(".kql") || file.name.endsWith(".txt") || file.name.endsWith(".md")) &&
+        file.name.toLowerCase() !== "readme.md"
     );
   }
 
-  // Filter the list of files based on the search query and the .txt extension for the Other repository
-  if (prefix === "Other") {
-    filtered = files.filter(
-      (file) =>
-        file.name.toLowerCase().includes(query.toLowerCase()) &&
-        file.name.endsWith(".txt")
-    );
-  }
+
 
   return (
     <ul>
@@ -67,15 +62,12 @@ function FileList({ files, query, prefix, filter }) {
         displayedFiles.add(file.name);
 
         // Split the file path into its individual parts
-        const filePath = file.path.split("/");
-        const subfolder = filePath[0];
-        let strippedFileName;
-        if (Array.isArray(filePath) && filePath.length >= 2) {
-          strippedFileName = filePath[1].substring(
-            0,
-            filePath[1].lastIndexOf(".")
-          );
-        }
+        const filePath = file.path.split("/").pop();
+        const filePathFolder = file.path.split("/").slice(0,-1)
+        const subfolder = filePathFolder.join("/");
+        
+      
+
 
         // Return the list item containing the file name and button
         return (
@@ -105,11 +97,13 @@ function FileList({ files, query, prefix, filter }) {
             >
               {subfolder.endsWith(".kql") || subfolder.endsWith(".txt") ? (
                 subfolder
-              ) : (
-                <strong>{subfolder}: </strong>
-              )}
-              {strippedFileName || filePath[1]}
-            </div>
+              ) : ( 
+                <strong>{subfolder} </strong> // 
+              )
+              // TODO filepath nur anzeigen wenn subfolder nicht gleich filepath ist
+              } 
+              {filePath} 
+            </div> 
             <div
               style={{
                 flex: "0 1 auto",

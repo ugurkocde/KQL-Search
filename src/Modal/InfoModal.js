@@ -45,7 +45,7 @@ export default function ChangelogModal() {
             <p>
               {" "}
               The goal of this website is to provide a quick and easy way of
-              accessing KQL Queries that are publicly available on GitHub.
+              finding KQL Queries that are publicly available on GitHub.
             </p>
             <br></br>
             <p>
@@ -74,6 +74,30 @@ export default function ChangelogModal() {
                 rel="noreferrer"
               >
                 SentinelKQL
+              </a>{" "}
+            </li>
+            <li>
+              {" "}
+              Jose Sebastián Canós :{" "}
+              <a
+                href="https://github.com/ep3p/Sentinel_KQL/tree/main/Queries"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                Sentinel_KQL
+              </a>{" "}
+            </li>
+            <li>
+              {" "}
+              Bert-Jan Pals :{" "}
+              <a
+                href="https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+              Hunting-Queries-Detection-Rules
               </a>{" "}
             </li>
             <li>
