@@ -9,6 +9,7 @@ import Footer from "./footer";
 import "./App.css";
 
 function App() {
+  // eslint-disable-next-line
   const [intuneFiles, setIntuneFiles] = useState([]);
   const [sentinelFiles, setSentinelFiles] = useState([]);
   const [query, setQuery] = useState("");
@@ -32,7 +33,7 @@ function App() {
   } else if (filter === "Sentinel") {
     filteredIntuneFiles = [];
     filteredSentinelFiles = sentinelFiles;
-  } 
+  }
 
   useEffect(() => {
     const fetchRepositoryFiles = async (repository, path = "") => {
@@ -47,26 +48,30 @@ function App() {
           }
         );
 
-           // Add the repository information to each file object
-          const filesWithRepository = response.data.map((file) => {
-            return {...file, repository: repository};
+        // Add the repository information to each file object
+        const filesWithRepository = response.data.map((file) => {
+          return { ...file, repository: repository };
         });
 
         // Add the retrieved files to the list of repository files
         if (repository === "ugurkocde/KQL_Intune") {
-          setIntuneFiles((intuneFiles) => [...intuneFiles, ...response.data, ...filesWithRepository]);
+          setIntuneFiles((intuneFiles) => [
+            ...intuneFiles,
+            ...response.data,
+            ...filesWithRepository,
+          ]);
         } else if (
           repository === "reprise99/Sentinel-Queries" || // https://github.com/reprise99/Sentinel-Queries
           (repository === "ep3p/Sentinel_KQL" && path.startsWith("Queries")) || // https://github.com/ep3p/Sentinel_KQL/tree/main/Queries
-          (repository === "rod-trent/SentinelKQL") || // https://github.com/rod-trent/SentinelKQL
-          (repository === "Bert-JanP/Hunting-Queries-Detection-Rules") // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+          repository === "rod-trent/SentinelKQL" || // https://github.com/rod-trent/SentinelKQL
+          repository === "Bert-JanP/Hunting-Queries-Detection-Rules" // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
         ) {
           setSentinelFiles((sentinelFiles) => [
             ...sentinelFiles,
             ...response.data,
-            ...filesWithRepository
+            ...filesWithRepository,
           ]);
-        } 
+        }
 
         // Recursively fetch the contents of any subdirectories
         for (const file of response.data) {
@@ -97,10 +102,24 @@ function App() {
   const handleFilter = (prefix) => {
     setFilter(prefix);
   };
-  
-  const today = new Date();
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  const lastRefresh = today.toLocaleDateString("en-US", options);
+
+  const [timeSinceLastVisit, setTimeSinceLastVisit] = useState(0);
+  const [startTime, setStartTime] = useState(Date.now());
+
+  useEffect(() => {
+    const lastVisit = localStorage.getItem("lastVisit") || startTime;
+
+    const intervalId = setInterval(() => {
+      setTimeSinceLastVisit(Math.floor((Date.now() - lastVisit) / 1000));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [startTime]);
+
+  useEffect(() => {
+    localStorage.setItem("lastVisit", startTime);
+    setStartTime(Date.now());
+  }, []);
 
   return (
     <div>
@@ -108,7 +127,12 @@ function App() {
         <SearchBar onSearch={handleSearch} onFilter={handleFilter} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        Last Refresh: {lastRefresh}
+        Last Refresh: {Math.floor(timeSinceLastVisit / 60)} min{" "}
+        {timeSinceLastVisit % 60} sec{" "}
+        <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "20px", marginTop: "2px" }}>
+          <span class="circle"></span>
+          <span class="ringring"></span>
+        </span>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Socials />
@@ -116,10 +140,7 @@ function App() {
       <div
         style={{ display: "flex", justifyContent: "center", margin: "0 auto" }}
       >
-        <Statistics
-          intuneFiles={intuneFiles}
-          sentinelFiles={sentinelFiles}
-        />
+        <Statistics intuneFiles={intuneFiles} sentinelFiles={sentinelFiles} />
       </div>
       <div
         style={{
