@@ -128,7 +128,7 @@ function App() {
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         Last Refresh: {Math.floor(timeSinceLastVisit / 60)} min{" "}
-        {timeSinceLastVisit % 60} sec{" "}
+        {timeSinceLastVisit % 60} sec{" "} ago
         <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "20px"}}>
           <span class="circle"></span>
           <span class="ringring"></span>
