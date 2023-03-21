@@ -14,6 +14,16 @@ export default function Socials() {
   return (
     <div className="socials" spacing={2} direction="row">
       <Stack>
+        <a
+          className="github-button"
+          href="https://github.com/ugurkocde/KQL-Search"
+          data-icon="octicon-star"
+          data-size="large"
+          data-show-count="true"
+          aria-label="Star ugurkocde/KQL-Search on GitHub"
+        >
+          Star
+        </a>
         <IconButton color="primary" size="medium" title="Info">
           <InfoModal />
         </IconButton>
