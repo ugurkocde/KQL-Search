@@ -3,8 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import AzureLogo from "./Microsoft_Azure.svg";
-import DeployToAzure from "./deploytoazure.png";
+import AzureLogo from "../Media/Microsoft_Azure.svg";
+import DeployToAzure from "../Media/deploytoazure.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 

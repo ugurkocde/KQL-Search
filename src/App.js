@@ -103,31 +103,13 @@ function App() {
     setFilter(prefix);
   };
 
-  const [timeSinceLastVisit, setTimeSinceLastVisit] = useState(0);
-  const [startTime, setStartTime] = useState(Date.now());
-
-  useEffect(() => {
-    const lastVisit = localStorage.getItem("lastVisit") || startTime;
-
-    const intervalId = setInterval(() => {
-      setTimeSinceLastVisit(Math.floor((Date.now() - lastVisit) / 1000));
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [startTime]);
-
-  useEffect(() => {
-    localStorage.setItem("lastVisit", startTime);
-    setStartTime(Date.now());
-  }, []);
-
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <SearchBar onSearch={handleSearch} onFilter={handleFilter} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        Realtime data from GitHub
+        Realtime data
         <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "20px"}}>
           <span class="circle"></span>
           <span class="ringring"></span>

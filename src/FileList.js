@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { useState } from "react";
-import GithubLogo from "./Modal/github-mark.svg";
+import GithubLogo from "./Media/github-mark.svg";
+import LinkedinLogo from "./Media/linkedin_logo.svg";
+import TwitterLogo from "./Media/twitter_logo.svg";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
-import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDownWideShort } from "@fortawesome/free-solid-svg-icons";
 
 function FileList({ files, query, prefix, filter }) {
   let filtered = files;
   const displayedFiles = new Set();
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContents, setFileContents] = useState(null);
+  const [queryCopySuccess, setQueryCopySuccess] = useState(false);
+  const [urlCopySuccess, setUrlCopySuccess] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+    if (queryCopySuccess) {
+      timeout = setTimeout(() => {
+        setQueryCopySuccess(false);
+      }, 3000);
+    }
+    if (urlCopySuccess) {
+      timeout = setTimeout(() => {
+        setUrlCopySuccess(false);
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [queryCopySuccess, urlCopySuccess]);
+  
 
   const handleFileClick = (file) => {
     // If the file being clicked is already the selected file, close the file contents
@@ -85,6 +108,20 @@ function FileList({ files, query, prefix, filter }) {
             }}
             onClick={() => handleFileClick(file)}
           >
+            <button
+              style={{
+                border: "0px",
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "transparent",
+                color: "white",
+                margin: "5px",
+                flexWrap: "nowrap",
+                mouse: "pointer",
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowDownWideShort} size="xl" />
+            </button>
             <div
               style={{
                 flex: "1 0 auto",
@@ -94,14 +131,11 @@ function FileList({ files, query, prefix, filter }) {
                 cursor: "pointer",
               }}
             >
-              {
-                subfolder.endsWith(".kql") || subfolder.endsWith(".txt") ? (
-                  subfolder
-                ) : (
-                  <strong>{subfolder} </strong> //
-                )
-                // TODO filepath nur anzeigen wenn subfolder nicht gleich filepath ist
-              }
+              {subfolder.endsWith(".kql") || subfolder.endsWith(".txt") ? (
+                subfolder
+              ) : (
+                <strong>{subfolder} </strong> //
+              )}
               {filePath}
             </div>
             <div
@@ -141,7 +175,7 @@ function FileList({ files, query, prefix, filter }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const tweetText = `Check out this KQL Query:\n\n${file.html_url}\n\n#KQL`;
+                  const tweetText = `${file.name}:\n\n${file.html_url}\n\nMore KQL: kqlsearch.com\n\n#KQL #KQLSearch`;
                   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
                     tweetText
                   )}`;
@@ -158,11 +192,13 @@ function FileList({ files, query, prefix, filter }) {
                   cursor: "pointer",
                 }}
               >
-                <FontAwesomeIcon
-                  icon={faTwitter}
+                <img
+                  src={TwitterLogo}
+                  alt="Share on Twitter"
                   style={{
                     width: "30px",
-                    height: "30px",
+                    flexWrap: "nowrap",
+                    cursor: "pointer",
                   }}
                 />
               </button>
@@ -184,11 +220,13 @@ function FileList({ files, query, prefix, filter }) {
                   cursor: "pointer",
                 }}
               >
-                <FontAwesomeIcon
-                  icon={faLinkedin}
+                <img
+                  src={LinkedinLogo}
+                  alt="Share on LinkedIn"
                   style={{
                     width: "30px",
-                    height: "30px",
+                    flexWrap: "nowrap",
+                    cursor: "pointer",
                   }}
                 />
               </button>
@@ -213,6 +251,7 @@ function FileList({ files, query, prefix, filter }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     navigator.clipboard.writeText(fileContents);
+                    setQueryCopySuccess(true);
                   }}
                   style={{
                     marginBottom: "6px",
@@ -220,21 +259,26 @@ function FileList({ files, query, prefix, filter }) {
                     padding: "2px",
                     flexWrap: "nowrap",
                   }}
+                  title="Click to copy the KQL Query"
                 >
-                  <FontAwesomeIcon icon={faCopy} /> Copy Query
+                  <FontAwesomeIcon icon={faCopy} /> {" "}
+                  {queryCopySuccess  ? "Copied!" : "Copy Query"}
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigator.clipboard.writeText(file.html_url);
+                    setUrlCopySuccess(true);
                   }}
                   style={{
                     marginBottom: "6px",
                     padding: "2px",
                     flexWrap: "nowrap",
                   }}
+                  title="Click to copy URL"
                 >
-                  <FontAwesomeIcon icon={faCopy} /> Copy URL
+                  <FontAwesomeIcon icon={faCopy} />{" "}
+                  {urlCopySuccess ? "Copied!" : "Copy URL"}
                 </button>
               </div>
             ) : null}
