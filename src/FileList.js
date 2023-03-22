@@ -116,7 +116,7 @@ function FileList({ files, query, prefix, filter }) {
                 color: "white",
                 margin: "5px",
                 flexWrap: "nowrap",
-                mouse: "pointer",
+                cursor: "pointer",
               }}
             >
               <FontAwesomeIcon icon={faArrowDownWideShort} size="xl" />
@@ -174,7 +174,7 @@ function FileList({ files, query, prefix, filter }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const tweetText = `${file.name}:\n\n${file.html_url}\n\nMore KQL: kqlsearch.com\n\n#KQL #KQLSearch`;
+                  const tweetText = `${file.name}\n\n${file.html_url}\n\nMore KQL: kqlsearch.com\n\n#KQL #KQLSearch`;
                   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
                     tweetText
                   )}`;
@@ -257,6 +257,7 @@ function FileList({ files, query, prefix, filter }) {
                     margin: "10px",
                     padding: "2px",
                     flexWrap: "nowrap",
+                    cursor: "pointer",
                   }}
                   title="Click to copy the KQL Query"
                 >
@@ -267,7 +268,6 @@ function FileList({ files, query, prefix, filter }) {
                     "Copy Query"
                   )}
                 </button>
-
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -278,6 +278,7 @@ function FileList({ files, query, prefix, filter }) {
                     marginBottom: "6px",
                     padding: "2px",
                     flexWrap: "nowrap",
+                    cursor: "pointer",
                   }}
                   title="Click to copy URL"
                 >
