@@ -223,6 +223,19 @@ function FileList({ files, query, prefix, filter }) {
                 >
                   <FontAwesomeIcon icon={faCopy} /> Copy Query
                 </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(file.html_url);
+                  }}
+                  style={{
+                    marginBottom: "6px",
+                    padding: "2px",
+                    flexWrap: "nowrap",
+                  }}
+                >
+                  <FontAwesomeIcon icon={faCopy} /> Copy URL
+                </button>
               </div>
             ) : null}
           </li>
