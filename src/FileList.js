@@ -80,9 +80,8 @@ function FileList({ files, query, prefix, filter }) {
               alignItems: "center",
               border: "1px solid grey",
               overflow: "hidden",
-              marginRight: "1%",
-              marginLeft: "1%",
-              width: "850px",
+              margin: "1%",
+              width: "1050px",
             }}
             onClick={() => handleFileClick(file)}
           >
@@ -170,9 +169,8 @@ function FileList({ files, query, prefix, filter }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const title = encodeURIComponent(`Check out this KQL Query`);
                   const url = encodeURIComponent(file.html_url);
-                  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`;
+                  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
                   window.open(linkedinUrl, "_blank");
                 }}
                 style={{
