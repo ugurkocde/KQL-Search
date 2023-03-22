@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import GithubLogo from "./Modal/github-mark.svg";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
+import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function FileList({ files, query, prefix, filter }) {
@@ -33,7 +34,9 @@ function FileList({ files, query, prefix, filter }) {
     filtered = files.filter(
       (file) =>
         file.name.toLowerCase().includes(query.toLowerCase()) &&
-        (file.name.endsWith(".kql") || file.name.endsWith(".txt") || file.name.endsWith(".md")) &&
+        (file.name.endsWith(".kql") ||
+          file.name.endsWith(".txt") ||
+          file.name.endsWith(".md")) &&
         file.name.toLowerCase() !== "readme.md"
     );
   }
@@ -42,12 +45,12 @@ function FileList({ files, query, prefix, filter }) {
     filtered = files.filter(
       (file) =>
         file.name.toLowerCase().includes(query.toLowerCase()) &&
-        (file.name.endsWith(".kql") || file.name.endsWith(".txt") || file.name.endsWith(".md")) &&
+        (file.name.endsWith(".kql") ||
+          file.name.endsWith(".txt") ||
+          file.name.endsWith(".md")) &&
         file.name.toLowerCase() !== "readme.md"
     );
   }
-
-
 
   return (
     <ul>
@@ -63,11 +66,8 @@ function FileList({ files, query, prefix, filter }) {
 
         // Split the file path into its individual parts
         const filePath = file.path.split("/").pop();
-        const filePathFolder = file.path.split("/").slice(0,-1)
+        const filePathFolder = file.path.split("/").slice(0, -1);
         const subfolder = filePathFolder.join("/");
-        
-      
-
 
         // Return the list item containing the file name and button
         return (
@@ -95,17 +95,19 @@ function FileList({ files, query, prefix, filter }) {
                 cursor: "pointer",
               }}
             >
-              {subfolder.endsWith(".kql") || subfolder.endsWith(".txt") ? (
-                subfolder
-              ) : ( 
-                <strong>{subfolder} </strong> // 
-              )
-              // TODO filepath nur anzeigen wenn subfolder nicht gleich filepath ist
-              } 
-              {filePath} 
-            </div> 
+              {
+                subfolder.endsWith(".kql") || subfolder.endsWith(".txt") ? (
+                  subfolder
+                ) : (
+                  <strong>{subfolder} </strong> //
+                )
+                // TODO filepath nur anzeigen wenn subfolder nicht gleich filepath ist
+              }
+              {filePath}
+            </div>
             <div
               style={{
+                display: "flex",
                 flex: "0 1 auto",
                 flexWrap: "wrap",
                 flexDirection: "row",
@@ -113,7 +115,10 @@ function FileList({ files, query, prefix, filter }) {
               }}
             >
               <button
-                onClick={() => window.open(file.html_url, "_blank")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(file.html_url, "_blank");
+                }}
                 style={{
                   border: "0px",
                   display: "flex",
@@ -131,6 +136,61 @@ function FileList({ files, query, prefix, filter }) {
                     width: "30px",
                     flexWrap: "nowrap",
                     cursor: "pointer",
+                  }}
+                />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const tweetText = `Check out this KQL Query:\n\n${file.html_url}\n\n#KQL`;
+                  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                    tweetText
+                  )}`;
+                  window.open(twitterUrl, "_blank");
+                }}
+                style={{
+                  border: "0px",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "transparent",
+                  color: "white",
+                  margin: "5px",
+                  flexWrap: "nowrap",
+                  cursor: "pointer",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                  }}
+                />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const title = encodeURIComponent(`Check out this KQL Query`);
+                  const url = encodeURIComponent(file.html_url);
+                  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`;
+                  window.open(linkedinUrl, "_blank");
+                }}
+                style={{
+                  border: "0px",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "transparent",
+                  color: "white",
+                  margin: "5px",
+                  flexWrap: "nowrap",
+                  cursor: "pointer",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  style={{
+                    width: "30px",
+                    height: "30px",
                   }}
                 />
               </button>
@@ -152,7 +212,10 @@ function FileList({ files, query, prefix, filter }) {
                 </pre>
                 {/* Add the copy button */}
                 <button
-                  onClick={() => navigator.clipboard.writeText(fileContents)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(fileContents);
+                  }}
                   style={{
                     marginBottom: "6px",
                     margin: "10px",
