@@ -32,7 +32,6 @@ function FileList({ files, query, prefix, filter }) {
       clearTimeout(timeout);
     };
   }, [queryCopySuccess, urlCopySuccess]);
-  
 
   const handleFileClick = (file) => {
     // If the file being clicked is already the selected file, close the file contents
@@ -261,9 +260,14 @@ function FileList({ files, query, prefix, filter }) {
                   }}
                   title="Click to copy the KQL Query"
                 >
-                  <FontAwesomeIcon icon={faCopy} /> {" "}
-                  {queryCopySuccess  ? "Copied!" : "Copy Query"}
+                  <FontAwesomeIcon icon={faCopy} />{" "}
+                  {queryCopySuccess ? (
+                    <span style={{ color: "green" }}>Copied Query!</span>
+                  ) : (
+                    "Copy Query"
+                  )}
                 </button>
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -278,7 +282,11 @@ function FileList({ files, query, prefix, filter }) {
                   title="Click to copy URL"
                 >
                   <FontAwesomeIcon icon={faCopy} />{" "}
-                  {urlCopySuccess ? "Copied!" : "Copy URL"}
+                  {urlCopySuccess ? (
+                    <span style={{ color: "green" }}>Copied URL!</span>
+                  ) : (
+                    "Copy URL"
+                  )}
                 </button>
               </div>
             ) : null}
