@@ -64,7 +64,8 @@ function App() {
           repository === "reprise99/Sentinel-Queries" || // https://github.com/reprise99/Sentinel-Queries
           (repository === "ep3p/Sentinel_KQL" && path.startsWith("Queries")) || // https://github.com/ep3p/Sentinel_KQL/tree/main/Queries
           repository === "rod-trent/SentinelKQL" || // https://github.com/rod-trent/SentinelKQL
-          repository === "Bert-JanP/Hunting-Queries-Detection-Rules" // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+          repository === "Bert-JanP/Hunting-Queries-Detection-Rules" || // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+          repository === "alexverboon/Hunting-Queries-Detection-Rules" //
         ) {
           setSentinelFiles((sentinelFiles) => [
             ...sentinelFiles,
@@ -90,6 +91,7 @@ function App() {
     fetchRepositoryFiles("ep3p/Sentinel_KQL");
     fetchRepositoryFiles("rod-trent/SentinelKQL");
     fetchRepositoryFiles("Bert-JanP/Hunting-Queries-Detection-Rules");
+    fetchRepositoryFiles("alexverboon/Hunting-Queries-Detection-Rules");
 
     // Reset the search query after the initial fetch
     setQuery("");
@@ -110,7 +112,14 @@ function App() {
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         Realtime data
-        <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "20px"}}>
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: "20px",
+          }}
+        >
           <span class="circle"></span>
           <span class="ringring"></span>
         </span>

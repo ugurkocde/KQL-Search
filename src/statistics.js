@@ -38,6 +38,15 @@ function Statistics({ intuneFiles, sentinelFiles }) {
         file.name.endsWith(".md")) &&
       file.name !== "readme.md"
   ).length;
+  const alexverboonFilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "alexverboon/Hunting-Queries-Detection-Rules" &&
+      (file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.endsWith(".md")) &&
+      file.name !== "readme.md"
+  ).length;
   const ugurkocdeFilesCount = intuneFiles.filter(
     (file) =>
       file.type === "file" &&
@@ -53,6 +62,7 @@ function Statistics({ intuneFiles, sentinelFiles }) {
     ep3pFilesCount +
     rodtrentFilesCount +
     BertJanPFilesCount +
+    alexverboonFilesCount +
     ugurkocdeFilesCount;
 
   return (
