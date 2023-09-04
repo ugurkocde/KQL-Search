@@ -17,14 +17,15 @@ function App() {
   const searchRegex = new RegExp(query, "i");
   let filteredIntuneFiles = intuneFiles.filter(
     (file) =>
-      (file.type === "file" && searchRegex.test(file.name)) ||
+      (file.type === "file" && (searchRegex.test(file.name) || file.name.includes('.'))) ||
       (file.type === "dir" && searchRegex.test(file.name))
-  );
-  let filteredSentinelFiles = sentinelFiles.filter(
+);
+
+let filteredSentinelFiles = sentinelFiles.filter(
     (file) =>
-      (file.type === "file" && searchRegex.test(file.name)) ||
+      (file.type === "file" && (searchRegex.test(file.name) || file.name.includes('.'))) ||
       (file.type === "dir" && searchRegex.test(file.name))
-  );
+);
 
   // Filter the list of files based on the search query and the selected prefix
   if (filter === "Intune") {
