@@ -1,5 +1,8 @@
 # KQL Search
 
+
+[![Twitter Follow](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/UgurKocDe/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ugur-koc-302b9817a/) [![Website](https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://ugurkoc.de)
+
 ![KQLSearch](https://user-images.githubusercontent.com/43906965/210248362-41ba55ef-de47-46cc-a618-2ce36f488825.png)
 
 This website was made to simplify the process of searching for KQL Queries that are publicly shared on GitHub.
