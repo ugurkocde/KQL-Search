@@ -60,6 +60,12 @@ export default function ChangelogModal() {
               <li>https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules</li> 
               <li>https://github.com/ep3p/Sentinel_KQL/tree/main/Queries</li>
             </p>
+              <br></br>
+            <p>
+              {" "}
+              <b>Version 1.3:</b> Added new repo:
+              <li>https://github.com/mr-r3b00t/KQL</li> 
+            </p>
           </Typography>
         </Box>
       </Modal>

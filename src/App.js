@@ -65,6 +65,7 @@ function App() {
           (repository === "ep3p/Sentinel_KQL" && path.startsWith("Queries")) || // https://github.com/ep3p/Sentinel_KQL/tree/main/Queries
           repository === "rod-trent/SentinelKQL" || // https://github.com/rod-trent/SentinelKQL
           repository === "Bert-JanP/Hunting-Queries-Detection-Rules" || // https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules
+          repository === "mr-r3b00t/KQL" || // https://github.com/mr-r3b00t/KQL
           repository === "alexverboon/Hunting-Queries-Detection-Rules" //
         ) {
           setSentinelFiles((sentinelFiles) => [
@@ -90,6 +91,7 @@ function App() {
     fetchRepositoryFiles("reprise99/Sentinel-Queries");
     fetchRepositoryFiles("ep3p/Sentinel_KQL");
     fetchRepositoryFiles("rod-trent/SentinelKQL");
+    fetchRepositoryFiles("mr-r3b00t/KQL");
     fetchRepositoryFiles("Bert-JanP/Hunting-Queries-Detection-Rules");
     fetchRepositoryFiles("alexverboon/Hunting-Queries-Detection-Rules");
 

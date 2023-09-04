@@ -13,20 +13,21 @@ Currently supported GitHub Repositories:
 1. Matt Zorich: [Sentinel Queries](https://github.com/reprise99/Sentinel-Queries)
 2. Rod Trent: [SentinelKQL](https://github.com/rod-trent/SentinelKQL)
 3. Jose Sebastián Canós: [Sentinel_KQL](https://github.com/ep3p/Sentinel_KQL/tree/main/Queries)
-4. Bert-Jan Pals: [Hunting-Queries-Detection-Rules](https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules) 
-3. Ugur Koc: [KQL_Intune](https://github.com/ugurkocde/KQL_Intune) 
+4. Bert-Jan Pals: [Hunting-Queries-Detection-Rules](https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules)
+5. Daniel Card: [KQL](https://github.com/mr-r3b00t/KQL)
+6. Ugur Koc: [KQL_Intune](https://github.com/ugurkocde/KQL_Intune)
 
-more will be added soon ... 
+more will be added soon ...
 
 **I wrote a Blog about my motivation and the things I have learned with this project. You can find it here: [Blog](https://ugurkoc.de/kql-search/)**
 
-# What is KQL? 
+# What is KQL?
 
 KQL, or Kusto Query Language, is a query language used to search and analyze data in Microsoft Azure's data platform. It is used to perform ad hoc queries on data stored in Azure data services, including Azure Log Analytics, Azure Data Explorer, and Azure Monitor logs.
 
 KQL has a syntax similar to SQL, but is designed specifically for querying and analyzing log data. It allows users to filter and aggregate data, extract specific fields, and perform a wide range of statistical and analytical operations on data sets. KQL also has a number of built-in functions and operators that can be used to manipulate and analyze data.
 
-Microsoft Documentation: [Kusto Query Language (KQL)](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/) 
+Microsoft Documentation: [Kusto Query Language (KQL)](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
 
 # How to start this App on your local machine
 

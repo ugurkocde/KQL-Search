@@ -56,13 +56,26 @@ function Statistics({ intuneFiles, sentinelFiles }) {
         file.name.endsWith(".md")) &&
       file.name !== "readme.md"
   ).length;
-
+  const mrrebootFilesCount = sentinelFiles.filter(
+    (file) =>
+      file.type === "file" &&
+      file.repository === "mr-r3b00t/KQL" &&
+      (
+        file.name.endsWith(".kql") ||
+        file.name.endsWith(".txt") ||
+        file.name.indexOf('.') === -1 ||
+        file.name.endsWith(".md")
+      ) &&
+      file.name !== "readme.md"
+  ).length
+  
   const totalCount =
     reprise99FilesCount +
     ep3pFilesCount +
     rodtrentFilesCount +
     BertJanPFilesCount +
     alexverboonFilesCount +
+    mrrebootFilesCount +
     ugurkocdeFilesCount;
 
   return (

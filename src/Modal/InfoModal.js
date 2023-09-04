@@ -102,6 +102,17 @@ export default function ChangelogModal() {
             </li>
             <li>
               {" "}
+              Daniel Card:{" "}
+              <a
+                href="https://github.com/mr-r3b00t/KQL"
+                target="_blank"
+                rel="noreferrer"
+              >
+                KQL
+              </a>{" "}
+            </li>
+            <li>
+              {" "}
               Ugur Koc:{" "}
               <a
                 href="https://github.com/ugurkocde/KQL_Intune"
